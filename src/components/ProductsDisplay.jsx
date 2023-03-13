@@ -4,7 +4,7 @@ import { ProductsContext } from "../context";
 
 
 function ProductsDisplay({  category }) {
-  const { products } = useContext(ProductsContext);
+  const { products, cart } = useContext(ProductsContext);
 
   const navigate = useNavigate();
   const [data, setData] = useState(products);
@@ -22,6 +22,11 @@ function ProductsDisplay({  category }) {
     }
 
   }, [products, category])
+
+  // Add to cart
+  function addToCart(product) {
+    cart.setCart([...cart.cartItems, product])
+  }
  
   return (
     <div className="productsContainer">
@@ -45,7 +50,7 @@ function ProductsDisplay({  category }) {
                   <Link to={`/products/${product.id}`}>See more</Link>
                 </span> */}
               </div>
-              <div className="addtoCart">Add to Cart</div>
+              <div className="addtoCart" onClick={() => addToCart({id: product.id, image: product?.images[0], title: product.title, price: product.price})}>Add to Cart</div>
             </div>
           );
         })

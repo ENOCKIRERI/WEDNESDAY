@@ -8,7 +8,7 @@ import Products from "./components/Products";
 import ProductsDisplay from "./components/ProductsDisplay";
 import { products } from "./data";
 import { ProductsProvider } from "./context"
-
+import Cart from "./components/Cart"
 
 
 function App() {
@@ -25,7 +25,9 @@ function App() {
       <Navbar />
 
       <ProductsProvider>
+
         <Routes>
+        
           <Route path={"/products"} element={<Products />}>
             <Route
               index
@@ -46,6 +48,10 @@ function App() {
           <Route
             path="/products/:id"
             element={<OneProduct />}
+          />
+          <Route
+            path="/cart"
+            element={<Cart />}
           />
         </Routes>
       </ProductsProvider>
